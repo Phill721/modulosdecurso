@@ -2,8 +2,9 @@ package com.projectocursos.modulosdecurso.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,6 +12,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,7 +52,15 @@ public class Evaluacion {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private EstadoEvaluacion estado;
-    private ArrayList<Double> calificaciones;
+    
+    @OneToMany(mappedBy = "evaluacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Calificacion> calificaciones;
+
+    @Lob
+    @Column
     private String instrucciones;
-    private ArrayList<String> habilidadesevaluadas;
+
+    @Lob
+    @Column
+    private String habilidadesevaluadas;
 }
