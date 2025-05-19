@@ -54,6 +54,9 @@ public class Evaluacion {
     private EstadoEvaluacion estado;
     
     @OneToMany(mappedBy = "evaluacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Pregunta> preguntas;
+
+    @OneToMany(mappedBy = "evaluacion", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Calificacion> calificaciones;
 
     @Lob
