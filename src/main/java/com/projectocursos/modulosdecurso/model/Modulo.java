@@ -11,7 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,19 +25,27 @@ public class Modulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Para generar el id
     private int id;
+   
     @Column(length = 30, nullable = false, unique = true)
     private String titulo;
+    
     @Column(nullable = false)
     private int duracionsemanas;
+    
     @Column(nullable = false)
     private int orden;
+    
     @ElementCollection
     @CollectionTable(name = "modulo_recursos", joinColumns = @JoinColumn(name = "modulo_id"))
     @Column(name = "recursos")
     private ArrayList<String> recursos;
+    
     @Column(nullable = false)
     private boolean esvisible;
-    @OneToOne(cascade = CascadeType.ALL, optional = true)
-    @JoinColumn(name = "evaluacion_id", referencedColumnName = "id")
+    
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
     private Evaluacion evaluacion;
+
+    @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Contenido contenido;
 }

@@ -12,7 +12,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -41,9 +43,6 @@ public class Evaluacion {
     private LocalDateTime horatermino;
 
     @Column(nullable = false)
-    private int duracionmin;
-
-    @Column(nullable = false)
     private double puntajetotal;
 
     @Column(length = 50, nullable = false)
@@ -66,4 +65,8 @@ public class Evaluacion {
     @Lob
     @Column
     private String habilidadesevaluadas;
+
+    @ManyToOne
+    @JoinColumn(name = "modulo_id")
+    private Modulo modulo;
 }
