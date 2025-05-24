@@ -1,6 +1,7 @@
 package com.projectocursos.modulosdecurso.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
@@ -38,14 +39,14 @@ public class Modulo {
     @ElementCollection
     @CollectionTable(name = "modulo_recursos", joinColumns = @JoinColumn(name = "modulo_id"))
     @Column(name = "recursos")
-    private ArrayList<String> recursos;
+    private List<String> recursos = new ArrayList<>();
     
     @Column(nullable = false)
     private boolean esvisible;
     
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Evaluacion evaluacion;
+    private List<Evaluacion> evaluacion = new ArrayList<>();
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Contenido contenido;
+    private List<Contenido> contenido = new ArrayList<>();
 }
