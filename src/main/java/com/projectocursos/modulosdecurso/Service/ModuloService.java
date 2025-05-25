@@ -1,5 +1,7 @@
 package com.projectocursos.modulosdecurso.Service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,5 +19,28 @@ public class ModuloService {
     public Modulo crearModulo(Modulo modulo){
         return moduloRepository.save(modulo);
     
+    }
+
+    public Optional<Modulo> buscarxid(int id){
+        return moduloRepository.findById(id);
+    }
+    
+    public Optional<Modulo> actualizarModulo(int id, Modulo updatedModulo){
+        return moduloRepository.findById(id).map(modulo -> {
+            modulo.setId(updatedModulo.getId());
+            modulo.setTitulo(updatedModulo.getTitulo());
+            modulo.setDuracionsemanas(updatedModulo.getDuracionsemanas());
+            modulo.setOrden(updatedModulo.getOrden());
+            modulo.setRecursos(updatedModulo.getRecursos());
+            modulo.setEsvisible(updatedModulo.isEsvisible());
+            return moduloRepository.save(modulo);
+        });
+    }
+    public boolean eliminarModulo(int id){
+        if(moduloRepository.existsById(id)){
+            moduloRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

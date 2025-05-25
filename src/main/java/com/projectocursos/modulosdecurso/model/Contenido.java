@@ -2,7 +2,6 @@ package com.projectocursos.modulosdecurso.model;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,6 +44,6 @@ public class Contenido {
 
     @ManyToOne
     @JoinColumn(name = "modulo_id")
-    @JsonBackReference
+    
     private Modulo modulo;
 }

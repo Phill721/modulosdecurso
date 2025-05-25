@@ -2,9 +2,6 @@ package com.projectocursos.modulosdecurso.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
@@ -47,10 +44,8 @@ public class Modulo {
     private boolean esvisible;
     
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Evaluacion> evaluacion = new ArrayList<>();
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<Contenido> contenido = new ArrayList<>();
 }
