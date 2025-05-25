@@ -43,6 +43,6 @@ public class Pregunta {
     private String feedback;
 
     @ManyToOne
-    @JoinColumn(name = "modulo_id")
+    @JoinColumn(name = "evaluacion_id")
     private Evaluacion evaluacion;
 }
