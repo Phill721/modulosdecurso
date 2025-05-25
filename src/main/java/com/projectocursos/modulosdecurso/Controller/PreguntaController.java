@@ -63,4 +63,10 @@ public class PreguntaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/{id}/validar/{respuesta}")
+    public ResponseEntity<Boolean> validar(@PathVariable int id, @PathVariable int respuesta){
+        boolean esCorrecto = preguntaService.validarRespuesta(id, respuesta);
+        return ResponseEntity.ok(esCorrecto);
+    }
 }

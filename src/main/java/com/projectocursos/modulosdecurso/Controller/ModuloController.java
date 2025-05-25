@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -56,6 +57,16 @@ public class ModuloController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarModulo(@PathVariable int id){
         if(moduloService.eliminarModulo(id)){
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/{id}/modificar/visibilidad")
+    public ResponseEntity<Void> cambiarVisibilidad(@PathVariable int id){
+        boolean actualizado = moduloService.cambiarVisibilidad(id);
+        if(actualizado){
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();

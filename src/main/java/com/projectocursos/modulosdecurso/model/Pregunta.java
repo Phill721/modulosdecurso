@@ -46,6 +46,9 @@ public class Pregunta {
 
     @ManyToOne
     @JoinColumn(name = "evaluacion_id")
-    
     private Evaluacion evaluacion;
+
+    public boolean esCorrecta(int respuesta){
+        return this.indicerespuestacorrecta == respuesta;
+    }
 }

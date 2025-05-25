@@ -43,4 +43,15 @@ public class ModuloService {
         }
         return false;
     }
+
+    public boolean cambiarVisibilidad(int id){
+        Optional<Modulo> modulo = moduloRepository.findById(id);
+        if(modulo.isPresent()){
+            Modulo modactualizar = modulo.get();
+            modactualizar.setEsvisible(!modactualizar.isEsvisible());
+            moduloRepository.save(modactualizar);
+            return true;
+        }
+        return false;
+    }
 }

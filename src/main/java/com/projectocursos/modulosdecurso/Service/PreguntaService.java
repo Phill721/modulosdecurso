@@ -24,6 +24,12 @@ public class PreguntaService {
         return preguntaRepository.findById(id);
     }
 
+    public boolean validarRespuesta(int preguntaid, int respuesta){
+        return preguntaRepository.findById(preguntaid)
+            .map(pregunta -> pregunta.esCorrecta(respuesta))
+            .orElse(false);
+    }
+
     public Optional<Pregunta> actualizarPregunta(int id, Pregunta updatedPregunta){
         return preguntaRepository.findById(id).map(pregunta -> {
             pregunta.setId(updatedPregunta.getId());
