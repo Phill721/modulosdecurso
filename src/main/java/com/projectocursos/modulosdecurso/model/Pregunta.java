@@ -3,6 +3,8 @@ package com.projectocursos.modulosdecurso.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -44,5 +46,6 @@ public class Pregunta {
 
     @ManyToOne
     @JoinColumn(name = "evaluacion_id")
+    @JsonBackReference
     private Evaluacion evaluacion;
 }

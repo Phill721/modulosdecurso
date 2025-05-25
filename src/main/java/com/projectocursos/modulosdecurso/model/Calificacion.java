@@ -1,5 +1,7 @@
 package com.projectocursos.modulosdecurso.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,9 +28,11 @@ public class Calificacion {
 
     @ManyToOne
     @JoinColumn(name = "evaluacion_id", nullable = false)
+    @JsonBackReference
     private Evaluacion evaluacion;
 
     @ManyToOne
     @JoinColumn(name = "estudiante_id", nullable = false)
+    @JsonBackReference
     private Estudiante estudiante;
 }
