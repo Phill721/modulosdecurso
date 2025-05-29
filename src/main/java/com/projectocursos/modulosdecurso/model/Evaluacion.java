@@ -76,6 +76,5 @@ public class Evaluacion {
 
     @ManyToOne
     @JoinColumn(name = "modulo_id")
-    
     private Modulo modulo;
 }

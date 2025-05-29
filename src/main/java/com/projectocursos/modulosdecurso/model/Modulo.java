@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -32,7 +33,7 @@ public class Modulo {
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Para generar el id
     private int id;
    
-    @Column(length = 30, nullable = false, unique = true)
+    @Column(length = 50, nullable = false, unique = true)
     private String titulo;
     
     @Column(nullable = false)
@@ -54,4 +55,8 @@ public class Modulo {
 
     @OneToMany(mappedBy = "modulo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Contenido> contenido = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 }

@@ -33,6 +33,7 @@ public class ModuloService {
             modulo.setOrden(updatedModulo.getOrden());
             modulo.setRecursos(updatedModulo.getRecursos());
             modulo.setEsvisible(updatedModulo.isEsvisible());
+            modulo.setCurso(updatedModulo.getCurso());
             return moduloRepository.save(modulo);
         });
     }

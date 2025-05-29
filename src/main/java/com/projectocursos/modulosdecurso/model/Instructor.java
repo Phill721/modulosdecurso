@@ -3,12 +3,9 @@ package com.projectocursos.modulosdecurso.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,17 +17,17 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
     generator = ObjectIdGenerators.PropertyGenerator.class,
     property = "id"
 )
-
 @Entity
-@Table(name = "estudiante")
+@Table(name = "Instructor")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Estudiante extends Usuario{
-    @OneToMany(mappedBy = "estudiante", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Calificacion> calificaciones = new ArrayList<>();
+public class Instructor extends Usuario{
+    @Column(length = 50, nullable = false)
+    private String especialidad;
 
-    @ManyToMany(mappedBy = "estudiante")
-    private List<Curso> curso = new ArrayList<>();
+    @ManyToMany(mappedBy = "instructor")
+    
+    private List<Curso> cursos = new ArrayList<>();
 }

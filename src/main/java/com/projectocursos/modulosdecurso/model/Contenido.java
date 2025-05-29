@@ -39,10 +39,10 @@ public class Contenido {
     @Column(nullable = false)
     private TipoContenido tipo;
 
-    @Column(nullable = true)
+    @Column(length = 2000, nullable = true)
     private String contenido;
 
-    @Column(nullable = true)
+    @Column(length = 2000, nullable = true)
     private String url;
     
     @Column(nullable = false)
