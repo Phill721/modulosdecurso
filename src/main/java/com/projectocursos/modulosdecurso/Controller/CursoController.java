@@ -66,4 +66,10 @@ public class CursoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/{curso_id}/inscribir/{estudiante_id}")
+    public ResponseEntity<String> inscribirEstudiante(@PathVariable int curso_id, @PathVariable int estudiante_id){
+        cursoService.inscribirEstudiante(curso_id, estudiante_id);
+        return ResponseEntity.ok("Estudiante inscrito con exito");
+    }
 }
