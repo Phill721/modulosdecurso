@@ -62,4 +62,13 @@ public class CalificacionController {
         }
 
     }
+
+    @PostMapping("/calificar/{Estudianteid}/{Evaluacionid}/{valor}")
+    public ResponseEntity<String> calificar( @PathVariable int Estudianteid,
+        @PathVariable int Evaluacionid,
+        @PathVariable double valor){
+            calificacionService.Calificar(Estudianteid, Evaluacionid, valor);;
+            return ResponseEntity.ok("Estudiante calificado");
+        }
+
 }
