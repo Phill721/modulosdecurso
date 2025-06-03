@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.projectocursos.modulosdecurso.Repository.CursoRepository;
 import com.projectocursos.modulosdecurso.Repository.EstudianteRepository;
+import com.projectocursos.modulosdecurso.Repository.InstructorRepository;
 import com.projectocursos.modulosdecurso.model.Curso;
 import com.projectocursos.modulosdecurso.model.Estudiante;
+import com.projectocursos.modulosdecurso.model.Instructor;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -28,6 +30,9 @@ public class CursoService {
     public CursoService(CursoRepository cursoRepository){
         this.cursoRepository = cursoRepository;
     }
+
+    @Autowired
+    private InstructorRepository instructorRepository;
 
     public Curso crearCurso(Curso curso){
         return cursoRepository.save(curso);
@@ -65,11 +70,24 @@ public class CursoService {
         Curso curso = cursoRepository.findById(curso_id)
             .orElseThrow(() -> new EntityNotFoundException("Curso no encontrado"));
         Estudiante estudiante = estudianteRepository.findById(estudiante_id)
-            .orElseThrow(() -> new EntityNotFoundException("Curso no encontrado"));
+            .orElseThrow(() -> new EntityNotFoundException("Estudiante no encontrado"));
 
         if (!curso.getEstudiante().contains(estudiante)) {
             curso.getEstudiante().add(estudiante);
             estudiante.getCurso().add(curso);
+            cursoRepository.save(curso);
+        }
+    }
+
+    public void asignarInstructor(int curso_id, int instructor_id){
+        Curso curso = cursoRepository.findById(curso_id)
+            .orElseThrow(() -> new EntityNotFoundException("Curso no encontrado"));
+        Instructor instructor = instructorRepository.findById(instructor_id)
+            .orElseThrow(() -> new EntityNotFoundException("Instructor no encontrado"));
+        
+        if (!curso.getInstructor().contains(instructor)){
+            curso.getInstructor().add(instructor);
+            instructor.getCursos().add(curso);
             cursoRepository.save(curso);
         }
     }

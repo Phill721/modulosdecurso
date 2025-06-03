@@ -72,4 +72,13 @@ public class CursoController {
         cursoService.inscribirEstudiante(curso_id, estudiante_id);
         return ResponseEntity.ok("Estudiante inscrito con exito");
     }
+
+    @PostMapping("/{curso_id}/asignar/{instructor_id}")
+    public ResponseEntity<String> asignarInstructor(
+        @PathVariable int curso_id,
+        @PathVariable int instructor_id
+    ){
+        cursoService.asignarInstructor(curso_id, instructor_id);
+        return ResponseEntity.ok("Instructor asignado correctamente");
+    }
 }
