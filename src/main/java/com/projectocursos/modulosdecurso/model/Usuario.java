@@ -17,13 +17,13 @@ public abstract class Usuario {
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String correo;
 
     @Column(length = 50, nullable = false)
     private String password;
 
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, unique = true)
     private String usuario;
 
     @Column(length = 50, nullable = true)
